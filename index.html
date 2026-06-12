@@ -186,7 +186,17 @@ section{padding:96px 48px;max-width:1180px;margin:0 auto;position:relative;z-ind
 .project-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:12px}
 .project-name{font-family:'Instrument Serif',Georgia,serif;font-size:20px;margin-bottom:10px;line-height:1.25}
 .project-stack{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent2);letter-spacing:0.3px;margin-bottom:12px;line-height:1.6}
-.project-desc{color:var(--muted);font-size:13.5px;line-height:1.7;flex:1}
+.project-desc{color:var(--muted);font-size:13.5px;line-height:1.7;flex:1;margin-bottom:18px}
+.project-link{
+  display:inline-flex;align-items:center;gap:8px;margin-top:auto;
+  padding:9px 14px;width:fit-content;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
+  color:var(--accent-light);text-decoration:none;
+  background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.22);
+  border-radius:6px;transition:all 0.2s;
+}
+.project-link:hover{background:rgba(99,102,241,0.18);border-color:var(--accent-light);color:var(--text);transform:translateX(2px)}
+.project-link svg{width:14px;height:14px;flex-shrink:0}
 
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
 .skill-card{
@@ -445,72 +455,84 @@ footer{
       <div class="project-name">QuestAI — AI Assessment Platform</div>
       <div class="project-stack">Next.js 16 · TypeScript · Zustand · Node.js · Vercel</div>
       <div class="project-desc">Full-stack AI assessment platform with three role-based portals (Admin, Teacher, Student). AI-generated question papers, PDF export via jsPDF, per-assignment analytics, and school-wide leaderboard — deployed on Vercel.</div>
+      <a href="https://github.com/Sahhhiiillllll/QuestAI" target="_blank" rel="noopener" class="project-link" aria-label="View QuestAI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">02</div>
       <div class="project-name">Algorithmic (HFT) Trading AI Bot</div>
       <div class="project-stack">Python · FastAPI · LangChain · XGBoost · Redis · React</div>
       <div class="project-desc">Quantitative trading system with 8+ algorithmic strategies, C++ low-latency execution engine, LLM-driven sentiment analysis, and a full-stack dashboard with VaR/CVaR risk controls and Docker/Nginx deployment.</div>
+      <a href="https://github.com/Sahhhiiillllll/High-Frequency-Trading-bot" target="_blank" rel="noopener" class="project-link" aria-label="View HFT Trading Bot on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">03</div>
       <div class="project-name">TicketVerse</div>
       <div class="project-stack">Node.js · Razorpay · PostgreSQL · REST API</div>
       <div class="project-desc">Unified ticket booking platform for cricket, movies, concerts, and live events with end-to-end Razorpay payments, webhook confirmation, and real-time seat inventory under concurrent booking scenarios.</div>
+      <a href="https://github.com/Sahhhiiillllll/Ticket_Verse" target="_blank" rel="noopener" class="project-link" aria-label="View TicketVerse on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">04</div>
       <div class="project-name">CanSat/CubeSat GCS Dashboard</div>
       <div class="project-stack">React · Three.js · Leaflet.js · Chart.js · Tailwind CSS</div>
       <div class="project-desc">Aerospace-grade ground control dashboard with real-time telemetry streaming, 3D attitude viewer, GPS trajectory map, safety-interlocked command controls, and CSV/PNG telemetry export.</div>
+      <a href="https://github.com/Sahhhiiillllll/Ground-Control-Software-Aerospace-Dashboard-live" target="_blank" rel="noopener" class="project-link" aria-label="View GCS Dashboard on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">05</div>
       <div class="project-name">Brain Tumor Detection</div>
       <div class="project-stack">Python · PyTorch · ResNet50 · Flask</div>
       <div class="project-desc">Fine-tuned ResNet50 on 3,064 CE-MRI scans to classify three brain tumor types with 99.3% accuracy. Deployed as a Flask web app for real-time MRI upload and classification with confidence scores.</div>
+      <a href="https://github.com/Sahhhiiillllll/Brain-Tumor-Detection-ML" target="_blank" rel="noopener" class="project-link" aria-label="View Brain Tumor Detection on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">06</div>
       <div class="project-name">Abandoned Object Detection API</div>
       <div class="project-stack">Python · OpenCV · FastAPI · Vercel</div>
       <div class="project-desc">Real-time surveillance system detecting unattended objects using background subtraction and object tracking. Production REST API deployed serverlessly on Vercel with configurable alert thresholds.</div>
+      <a href="https://github.com/Sahhhiiillllll/Abandoned-Object-Detection-API" target="_blank" rel="noopener" class="project-link" aria-label="View Abandoned Object Detection API on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">07</div>
       <div class="project-name">BTC Price Prediction</div>
       <div class="project-stack">Python · ARIMA · SARIMAX · GARCH · Scikit-learn</div>
       <div class="project-desc">Bitcoin price forecasting using ARIMA, SARIMAX, and hybrid GARCH+SARIMAX (RMSE 154.32). Includes regression baselines, VAR multivariate analysis, and automated hyperparameter tuning via pmdarima.</div>
+      <a href="https://github.com/Sahhhiiillllll/BTC-Price-Prediction-ML" target="_blank" rel="noopener" class="project-link" aria-label="View BTC Price Prediction on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">08</div>
       <div class="project-name">Monte Carlo Options Universe</div>
       <div class="project-stack">Python · NumPy · pandas · Streamlit · Matplotlib</div>
       <div class="project-desc">Monte Carlo simulation engine running 10,000+ path simulations per option contract using Geometric Brownian Motion. Interactive Streamlit dashboard with configurable volatility, drift, and time-step parameters.</div>
+      <a href="https://github.com/Sahhhiiillllll/Monte-Carlo-options-universe" target="_blank" rel="noopener" class="project-link" aria-label="View Monte Carlo Options Universe on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">09</div>
       <div class="project-name">3D Order Book Liquidity Simulator</div>
       <div class="project-stack">Python · Streamlit · Plotly</div>
       <div class="project-desc">Production-grade dashboard simulating a 3D limit order book across four market regimes: normal, imbalance, spoofing, and flash crash. Real-time liquidity metrics and animated 3D Plotly visualizations.</div>
+      <a href="https://github.com/Sahhhiiillllll/3D-Order-Book-Liquidity-Simulator-Market-Microstructure-Lab" target="_blank" rel="noopener" class="project-link" aria-label="View 3D Order Book Simulator on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">10</div>
       <div class="project-name">Spectral Market Decomposition Engine</div>
       <div class="project-stack">Python · NumPy · Streamlit · FFT · pandas</div>
       <div class="project-desc">Rolling-window FFT decomposition of financial time series into dominant frequency and amplitude components, with interactive power spectrum visualizations surfacing cyclical market patterns.</div>
+      <a href="https://github.com/Sahhhiiillllll/Spectral-Market-Decomposition-Engine" target="_blank" rel="noopener" class="project-link" aria-label="View Spectral Market Decomposition Engine on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">11</div>
       <div class="project-name">AI Face Emotion &amp; Persona Overlay</div>
       <div class="project-stack">Python · MediaPipe · ONNX · TensorFlow · OpenCV</div>
       <div class="project-desc">Real-time facial emotion inference combining MediaPipe Face Mesh (468 landmarks) with a lightweight ONNX model. Cyberpunk neon HUD with animated scanlines and smooth bbox interpolation.</div>
+      <a href="https://github.com/Sahhhiiillllll/AI-Face-persona-Overlay" target="_blank" rel="noopener" class="project-link" aria-label="View AI Face Emotion Overlay on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
     <div class="project-card reveal">
       <div class="project-num">12</div>
       <div class="project-name">Medical Chatbot — Lyra</div>
       <div class="project-stack">Python · Flask · PyTorch · NLTK · Scikit-learn</div>
       <div class="project-desc">Flask-based medical chatbot using a PyTorch neural network with NLTK tokenization and bag-of-words features for intent classification and symptom query responses via REST API.</div>
+      <a href="https://github.com/Sahhhiiillllll/Medical-Chatbot-Lyra-ML" target="_blank" rel="noopener" class="project-link" aria-label="View Medical Chatbot Lyra on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
     </div>
   </div>
 </div>
@@ -716,7 +738,7 @@ footer{
 </section>
 
 <footer>
-  Built with passion for quant &amp; code · © 2026 Sahil
+   Quant &amp; Code · © 2026 Sahil
 </footer>
 
 <script>
