@@ -230,19 +230,40 @@ section{padding:96px 48px;max-width:1180px;margin:0 auto;position:relative;z-ind
 .course-list li{color:var(--muted);font-size:13px;padding:4px 0;padding-left:14px;position:relative;line-height:1.5}
 .course-list li::before{content:'·';position:absolute;left:0;color:var(--accent);font-weight:bold}
 
-.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
 .cert-card{
   background:var(--card);border:1px solid var(--border);border-radius:12px;
-  padding:24px;display:flex;gap:16px;align-items:flex-start;
+  padding:24px;display:flex;flex-direction:column;gap:18px;
+  transition:all 0.3s;
 }
+.cert-card:hover{border-color:rgba(99,102,241,0.35);box-shadow:0 12px 40px rgba(99,102,241,0.1)}
+.cert-header{display:flex;gap:16px;align-items:flex-start}
 .cert-icon{
   width:44px;height:44px;display:flex;align-items:center;justify-content:center;
   background:rgba(99,102,241,0.12);border-radius:10px;flex-shrink:0;font-size:20px;
 }
+.cert-body{flex:1}
 .cert-name{font-weight:600;font-size:15px;margin-bottom:4px}
 .cert-issuer{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-light);margin-bottom:6px}
-.cert-id{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:8px}
-.cert-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.cert-date{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent2);margin-bottom:6px}
+.cert-id{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px}
+.cert-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.cert-tasks{list-style:none;margin-top:4px}
+.cert-tasks li{
+  color:var(--muted);font-size:12.5px;padding:4px 0 4px 16px;
+  position:relative;line-height:1.5;
+}
+.cert-tasks li::before{content:'✓';position:absolute;left:0;color:var(--accent2);font-size:11px;top:5px}
+.cert-link{
+  display:inline-flex;align-items:center;gap:8px;margin-top:auto;
+  padding:9px 14px;width:fit-content;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
+  color:var(--accent-light);text-decoration:none;
+  background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.22);
+  border-radius:6px;transition:all 0.2s;
+}
+.cert-link:hover{background:rgba(99,102,241,0.18);border-color:var(--accent-light);color:var(--text);transform:translateX(2px)}
+.cert-link svg{width:14px;height:14px;flex-shrink:0}
 
 .connect-section{background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%);max-width:100%;padding:96px 48px;border-top:1px solid var(--border)}
 .connect-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start}
@@ -644,22 +665,42 @@ footer{
   </div>
   <div class="certs-grid">
     <div class="cert-card reveal">
-      <div class="cert-icon">🏦</div>
-      <div>
-        <div class="cert-name">Operations Job Simulation</div>
-        <div class="cert-issuer">Goldman Sachs · Forage · 2026</div>
-        <div class="cert-id">Credential ID: p8xENWfNvrwdp9rAq</div>
-        <div class="cert-desc">Modeled Operations Analyst workflows — trade lifecycle management, settlement discrepancy analysis, and cross-functional collaboration across Trading, Compliance, and IT under regulatory frameworks.</div>
+      <div class="cert-header">
+        <div class="cert-icon">🏦</div>
+        <div class="cert-body">
+          <div class="cert-name">Operations Job Simulation</div>
+          <div class="cert-issuer">Goldman Sachs · Forage</div>
+          <div class="cert-date">Certificate of Completion · May 14, 2026</div>
+          <div class="cert-id">Credential ID: p8xENWfNvrwdp9rAq</div>
+          <div class="cert-desc">Completed a job simulation modeled on an Operations Analyst role at Goldman Sachs — trade lifecycle management, settlement discrepancy analysis, and cross-functional collaboration across Trading, Compliance, and IT under regulatory frameworks.</div>
+        </div>
       </div>
+      <a href="https://www.theforage.com/completion-certificates/MBA4MnZTNFEoJZGnk/wNge9cjzNTXD2acrv_MBA4MnZTNFEoJZGnk_6a05545b0ca497833afaedfd_1778738620538_completion_certificate.pdf" target="_blank" rel="noopener" class="cert-link" aria-label="View Goldman Sachs Forage certificate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        View Certificate
+      </a>
     </div>
     <div class="cert-card reveal">
-      <div class="cert-icon">🤖</div>
-      <div>
-        <div class="cert-name">GenAI Powered Data Analytics</div>
-        <div class="cert-issuer">Tata iQ · Forage · 2026</div>
-        <div class="cert-id">Credential ID: cmf77YyZmbsZhP8fp</div>
-        <div class="cert-desc">Applied generative AI to credit risk and delinquency problems. Designed an AI-driven collections strategy integrating agentic AI, ethical AI principles, and regulatory compliance.</div>
+      <div class="cert-header">
+        <div class="cert-icon">🤖</div>
+        <div class="cert-body">
+          <div class="cert-name">GenAI Powered Data Analytics Job Simulation</div>
+          <div class="cert-issuer">Tata iQ · Forage</div>
+          <div class="cert-date">Certificate of Completion · May 14, 2026</div>
+          <div class="cert-id">Credential ID: cmf77YyZmbsZhP8fp</div>
+          <div class="cert-desc">Completed practical tasks in AI-powered data analytics for Tata iQ's Financial Services team:</div>
+          <ul class="cert-tasks">
+            <li>Exploratory data analysis and risk profiling</li>
+            <li>Predicting delinquency with AI</li>
+            <li>Business report and data storytelling for collections strategy</li>
+            <li>Implementing an AI-driven collections strategy</li>
+          </ul>
+        </div>
       </div>
+      <a href="https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_6a05545b0ca497833afaedfd_1778738611446_completion_certificate.pdf" target="_blank" rel="noopener" class="cert-link" aria-label="View Tata iQ Forage certificate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        View Certificate
+      </a>
     </div>
   </div>
 </div>
