@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Sahil — Software Developer, Quantitative Researcher & AI/ML Engineer">
 <title> Sahil | SDE & Quant </title>
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236366f1"><path d="M22 6h-7l-2-2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 11H8v-1c0-1.33 2.67-2 4-2s4 .67 4 2v1zm-4-4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>'>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -23,6 +24,19 @@
   --success:#34d399;
   --error:#f87171;
 }
+body.light-mode {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --border: rgba(15,23,42,0.1);
+  --accent: #4f46e5;
+  --accent-light: #6366f1;
+  --accent2: #0ea5e9;
+  --text: #0f172a;
+  --muted: #64748b;
+  --card: #ffffff;
+  --glow: rgba(79,70,229,0.2);
+}
 html{scroll-behavior:smooth}
 body{
   background:var(--bg);
@@ -31,6 +45,26 @@ body{
   font-size:16px;
   line-height:1.65;
   overflow-x:hidden;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+.theme-toggle {
+  background: rgba(99,102,241,0.15);
+  border: 1px solid rgba(99,102,241,0.35);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-light);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-toggle:hover {
+  background: rgba(99,102,241,0.25);
+  transform: rotate(15deg) scale(1.1);
+  color: var(--text);
+  box-shadow: 0 0 15px var(--glow);
 }
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -155,11 +189,13 @@ section{padding:96px 48px;max-width:1180px;margin:0 auto;position:relative;z-ind
   content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;
   background:linear-gradient(to bottom,var(--accent),transparent);
 }
-.exp-item{position:relative;padding:0 0 48px 40px}
+.exp-item{position:relative;padding:0 0 48px 40px; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);}
+.exp-item:hover {transform: translateX(10px);}
 .exp-dot{
   position:absolute;left:-4px;top:8px;width:9px;height:9px;border-radius:50%;
-  background:var(--accent);box-shadow:0 0 10px var(--glow);
+  background:var(--accent);box-shadow:0 0 15px var(--accent); transition: all 0.4s ease;
 }
+.exp-item:hover .exp-dot { transform: scale(1.5); box-shadow:0 0 25px var(--accent2); background: var(--accent2); }
 .exp-period{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:0.5px;margin-bottom:6px}
 .exp-role{font-size:19px;font-weight:600;margin-bottom:4px}
 .exp-company{font-size:14px;color:var(--muted);margin-bottom:16px}
@@ -223,8 +259,10 @@ section{padding:96px 48px;max-width:1180px;margin:0 auto;position:relative;z-ind
   content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;
   background:linear-gradient(to bottom,var(--accent),transparent);
 }
-.edu-item{position:relative;padding:0 0 44px 40px}
-.edu-dot{position:absolute;left:-4px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--glow)}
+.edu-item{position:relative;padding:0 0 44px 40px; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);}
+.edu-item:hover {transform: translateX(10px);}
+.edu-dot{position:absolute;left:-4px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 15px var(--accent); transition: all 0.4s ease;}
+.edu-item:hover .edu-dot { transform: scale(1.5); box-shadow:0 0 25px var(--accent2); background: var(--accent2); }
 .edu-period{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent2);margin-bottom:6px;line-height:1.6}
 .edu-degree{font-size:18px;font-weight:600;margin-bottom:4px}
 .edu-school{font-size:14px;color:var(--muted)}
@@ -372,7 +410,14 @@ footer{
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#certifications">Certifications</a></li>
-    <li><a href="#connect" class="nav-cta">Let's Connect</a></li>
+    <li style="display: flex; align-items: center; gap: 16px;">
+      <a href="#connect" class="nav-cta">Let's Connect</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark/Light Mode" style="width: 32px; height: 32px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </li>
   </ul>
 </nav>
 
@@ -645,37 +690,47 @@ footer{
   </div>
   <div class="skills-grid">
     <div class="skill-card reveal">
-      <div class="skill-category">Languages</div>
+      <div class="skill-category">Programming &amp; Scientific Computing</div>
       <div class="skill-tags">
-        <span class="tag">Python</span><span class="tag">C/C++</span><span class="tag">SQL</span>
-        <span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Dart</span>
-        <span class="tag">HTML/CSS</span>
+        <span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">C++</span>
+        <span class="tag">Rust</span><span class="tag">LaTeX</span>
       </div>
     </div>
     <div class="skill-card reveal">
-      <div class="skill-category">Frameworks &amp; Libraries</div>
+      <div class="skill-category">Machine Learning &amp; Deep Learning</div>
       <div class="skill-tags">
-        <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Node.js</span>
-        <span class="tag">FastAPI</span><span class="tag">TensorFlow</span><span class="tag">PyTorch</span>
-        <span class="tag">Streamlit</span><span class="tag">pandas</span><span class="tag">NumPy</span>
-        <span class="tag">Matplotlib</span>
+        <span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">XGBoost</span>
+        <span class="tag">LightGBM</span><span class="tag">U-Net</span><span class="tag">EDSR</span>
+        <span class="tag">RCAN</span><span class="tag">PINNs</span>
       </div>
     </div>
     <div class="skill-card reveal">
-      <div class="skill-category">Developer Tools</div>
+      <div class="skill-category">Remote Sensing &amp; Geospatial Analytics</div>
       <div class="skill-tags">
-        <span class="tag">Git/GitHub</span><span class="tag">Docker</span><span class="tag">GCP</span>
-        <span class="tag">VS Code</span><span class="tag">PyCharm</span><span class="tag">Cursor</span>
-        <span class="tag">PostgreSQL</span><span class="tag">Vercel</span>
+        <span class="tag">Multispectral Satellite Imagery</span><span class="tag">Sentinel-2</span><span class="tag">PlanetScope</span>
+        <span class="tag">GeoPandas</span><span class="tag">QGIS</span>
       </div>
     </div>
     <div class="skill-card reveal">
-      <div class="skill-category">Domains</div>
+      <div class="skill-category">Quantum Computing &amp; Quantum ML</div>
       <div class="skill-tags">
-        <span class="tag">Quant Finance</span><span class="tag">Algo Trading</span>
-        <span class="tag">Investment Banking</span><span class="tag">ML / DL</span>
-        <span class="tag">Signal Processing</span><span class="tag">Risk Analytics</span>
-        <span class="tag">Full-Stack Dev</span><span class="tag">Financial Modeling</span>
+        <span class="tag">Quantum–Classical Hybrid Models</span><span class="tag">Cirq</span>
+        <span class="tag">PennyLane</span><span class="tag">Qiskit</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-category">Data Engineering &amp; Systems</div>
+      <div class="skill-tags">
+        <span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">SQL</span>
+        <span class="tag">Docker</span><span class="tag">Git</span><span class="tag">REST APIs</span>
+        <span class="tag">Interactive Dashboards</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-category">Mathematical &amp; Physical Modeling</div>
+      <div class="skill-tags">
+        <span class="tag">Fractals &amp; Dynamical Systems</span><span class="tag">Numerical Modeling</span>
+        <span class="tag">Multiphase Flow Simulation</span>
       </div>
     </div>
   </div>
@@ -809,7 +864,8 @@ footer{
 </section>
 
 <footer>
-   Quant &amp; Tech · © 2026 Sahil - All Rights Reserved 
+   Quant &amp; Tech · © 2026 Sahil - All Rights Reserved<br>
+   <a href="https://www.flaticon.com/free-icons/personal-information" title="personal information icons" style="color: var(--muted); text-decoration: none; font-size: 10px; margin-top: 5px; display: inline-block;">Personal information icons created by Md Tanvirul Haque - Flaticon</a>
 </footer>
 
 <script>
@@ -873,6 +929,36 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
 });
+
+// Dark/Light Mode Toggle
+const themeToggleBtn = document.getElementById('themeToggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme == 'light') {
+  document.body.classList.add('light-mode');
+}
+
+themeToggleBtn.addEventListener('click', function() {
+  document.body.classList.toggle('light-mode');
+  let theme = 'dark';
+  if (document.body.classList.contains('light-mode')) {
+    theme = 'light';
+  }
+  localStorage.setItem('theme', theme);
+});
+
+// Cinematic Reveal on Scroll
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+revealElements.forEach(el => revealObserver.observe(el));
 </script>
 </body>
 </html>
