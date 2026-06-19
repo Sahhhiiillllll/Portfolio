@@ -7,398 +7,17 @@
 <title> Sahil | SDE & Quant </title>
 <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M22 6h-7l-2-2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 11H8v-1c0-1.33 2.67-2 4-2s4 .67 4 2v1zm-4-4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>'>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#05070f;
-  --surface:#0a0e1a;
-  --surface-2:#111827;
-  --border:rgba(148,163,184,0.12);
-  --accent:#6366f1;
-  --accent-light:#818cf8;
-  --accent2:#22d3ee;
-  --text:#f1f5f9;
-  --muted:#94a3b8;
-  --card:#0d1220;
-  --glow:rgba(99,102,241,0.3);
-  --success:#34d399;
-  --error:#f87171;
-}
-body.light-mode {
-  --bg: #f8fafc;
-  --surface: #ffffff;
-  --surface-2: #f1f5f9;
-  --border: rgba(15,23,42,0.1);
-  --accent: #4f46e5;
-  --accent-light: #6366f1;
-  --accent2: #0ea5e9;
-  --text: #0f172a;
-  --muted: #64748b;
-  --card: #ffffff;
-  --glow: rgba(79,70,229,0.2);
-}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Inter',system-ui,sans-serif;
-  font-size:16px;
-  line-height:1.65;
-  overflow-x:hidden;
-  transition: background 0.5s ease, color 0.5s ease;
-}
-.theme-toggle {
-  background: rgba(99,102,241,0.15);
-  border: 1px solid rgba(99,102,241,0.35);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent-light);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.theme-toggle:hover {
-  background: rgba(99,102,241,0.25);
-  transform: rotate(15deg) scale(1.1);
-  color: var(--text);
-  box-shadow: 0 0 15px var(--glow);
-}
-body::before{
-  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 800px 600px at 80% 20%,rgba(99,102,241,0.08) 0%,transparent 70%),
-    radial-gradient(ellipse 600px 500px at 10% 90%,rgba(34,211,238,0.05) 0%,transparent 60%);
-}
-
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  padding:18px 48px;
-  display:flex;align-items:center;justify-content:space-between;
-  backdrop-filter:blur(16px) saturate(180%);
-  border-bottom:1px solid var(--border);
-  background:rgba(5,7,15,0.85);
-}
-.nav-logo{
-  font-family:'IBM Plex Mono',monospace;
-  font-size:13px;font-weight:600;color:var(--accent-light);letter-spacing:1.5px;
-}
-.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
-.nav-links a{
-  color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;
-  letter-spacing:0.3px;transition:color 0.2s;
-}
-.nav-links a:hover{color:var(--text)}
-.nav-cta{
-  padding:8px 18px!important;
-  background:rgba(99,102,241,0.15)!important;
-  border:1px solid rgba(99,102,241,0.35)!important;
-  border-radius:6px;color:var(--accent-light)!important;
-}
-.nav-cta:hover{background:rgba(99,102,241,0.25)!important;color:var(--text)!important}
-.menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer}
-
-.hero{
-  min-height:100vh;display:flex;align-items:center;
-  padding:120px 48px 80px;position:relative;
-}
-.hero-inner{
-  position:relative;z-index:1;
-  display:grid;grid-template-columns:1fr 380px;gap:72px;
-  align-items:center;max-width:1180px;margin:0 auto;width:100%;
-}
-.hero-eyebrow{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2.5px;
-  color:var(--accent2);text-transform:uppercase;margin-bottom:18px;
-  display:flex;align-items:center;gap:10px;
-}
-.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent2)}
-.hero-name{
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:clamp(48px,5.5vw,76px);font-weight:400;line-height:1.05;
-  letter-spacing:-1.5px;margin-bottom:12px;
-}
-.hero-name span{
-  background:linear-gradient(135deg,var(--accent-light),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.hero-title{
-  font-size:clamp(17px,2vw,22px);font-weight:400;color:var(--muted);
-  margin-bottom:24px;line-height:1.45;
-}
-.hero-desc{color:var(--muted);font-size:15px;max-width:520px;line-height:1.8;margin-bottom:36px}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:8px;padding:13px 26px;
-  background:linear-gradient(135deg,var(--accent),#4f46e5);color:#fff;
-  border:none;border-radius:8px;font-size:14px;font-weight:600;
-  cursor:pointer;text-decoration:none;transition:all 0.25s;
-  box-shadow:0 4px 20px var(--glow);
-}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--glow)}
-.btn-outline{
-  display:inline-flex;align-items:center;gap:8px;padding:13px 26px;
-  background:transparent;color:var(--text);border:1px solid var(--border);
-  border-radius:8px;font-size:14px;font-weight:500;
-  cursor:pointer;text-decoration:none;transition:all 0.25s;
-}
-.btn-outline:hover{border-color:var(--accent-light);color:var(--accent-light)}
-.hero-right{display:flex;flex-direction:column;align-items:center;gap:28px}
-.photo-frame{position:relative;width:260px;height:260px}
-.photo-frame::before{
-  content:'';position:absolute;inset:-3px;
-  background:conic-gradient(from 0deg,var(--accent),var(--accent2),var(--accent));
-  border-radius:50%;animation:spin 8s linear infinite;
-}
-.photo-frame::after{content:'';position:absolute;inset:2px;background:var(--bg);border-radius:50%}
-@keyframes spin{to{transform:rotate(360deg)}}
-.photo-inner{position:absolute;inset:6px;z-index:1;border-radius:50%;overflow:hidden}
-.photo-inner img{width:100%;height:100%;object-fit:cover;object-position:center top}
-.status-badge{
-  display:flex;align-items:center;gap:8px;padding:9px 18px;
-  background:rgba(34,211,238,0.08);border:1px solid rgba(34,211,238,0.25);
-  border-radius:100px;font-family:'IBM Plex Mono',monospace;
-  font-size:11px;color:var(--accent2);letter-spacing:0.5px;
-}
-.status-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
-.stat-row{display:flex;gap:28px}
-.stat-item{text-align:center}
-.stat-num{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;color:var(--accent-light)}
-.stat-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:3px}
-
-section{padding:96px 48px;max-width:1180px;margin:0 auto;position:relative;z-index:1}
-.section-label{
-  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2.5px;
-  color:var(--accent-light);text-transform:uppercase;margin-bottom:14px;
-  display:flex;align-items:center;gap:10px;
-}
-.section-label::before{content:'';width:20px;height:1px;background:var(--accent-light)}
-.section-title{
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:clamp(30px,3.5vw,48px);font-weight:400;
-  letter-spacing:-0.5px;margin-bottom:52px;line-height:1.15;
-}
-.section-full{background:var(--surface);max-width:100%;padding:96px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.section-full .section-inner{max-width:1180px;margin:0 auto}
-
-.exp-timeline{position:relative}
-.exp-timeline::before{
-  content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;
-  background:linear-gradient(to bottom,var(--accent),transparent);
-}
-.exp-item{position:relative;padding:0 0 48px 40px; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);}
-.exp-item:hover {transform: translateX(10px);}
-.exp-dot{
-  position:absolute;left:-4px;top:8px;width:9px;height:9px;border-radius:50%;
-  background:var(--accent);box-shadow:0 0 15px var(--accent); transition: all 0.4s ease;
-}
-.exp-item:hover .exp-dot { transform: scale(1.5); box-shadow:0 0 25px var(--accent2); background: var(--accent2); }
-.exp-period{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:0.5px;margin-bottom:6px}
-.exp-role{font-size:19px;font-weight:600;margin-bottom:4px}
-.exp-company{font-size:14px;color:var(--muted);margin-bottom:16px}
-.exp-bullets{list-style:none}
-.exp-bullets li{
-  color:var(--muted);font-size:14px;padding:5px 0 5px 18px;
-  position:relative;line-height:1.65;
-}
-.exp-bullets li::before{content:'▸';position:absolute;left:0;color:var(--accent-light);font-size:11px;top:7px}
-
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
-.project-card{
-  background:var(--card);border:1px solid var(--border);border-radius:12px;
-  padding:28px;position:relative;overflow:hidden;transition:all 0.3s;
-  display:flex;flex-direction:column;
-}
-.project-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  opacity:0;transition:opacity 0.3s;
-}
-.project-card:hover{border-color:rgba(99,102,241,0.35);transform:translateY(-3px);box-shadow:0 12px 40px rgba(99,102,241,0.1)}
-.project-card:hover::before{opacity:1}
-.project-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:12px}
-.project-name{font-family:'Instrument Serif',Georgia,serif;font-size:20px;margin-bottom:10px;line-height:1.25}
-.project-stack{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent2);letter-spacing:0.3px;margin-bottom:12px;line-height:1.6}
-.project-desc{color:var(--muted);font-size:13.5px;line-height:1.7;flex:1;margin-bottom:18px}
-.project-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
-.project-link{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:9px 14px;width:fit-content;
-  font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
-  color:var(--accent-light);text-decoration:none;
-  background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.22);
-  border-radius:6px;transition:all 0.2s;
-}
-.project-link:hover{background:rgba(99,102,241,0.18);border-color:var(--accent-light);color:var(--text);transform:translateX(2px)}
-.project-link-live{
-  color:var(--accent2);
-  background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.22);
-}
-.project-link-live:hover{background:rgba(34,211,238,0.18);border-color:var(--accent2);color:var(--text)}
-.project-link svg{width:14px;height:14px;flex-shrink:0}
-
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.skill-card{
-  background:var(--card);border:1px solid var(--border);border-radius:12px;
-  padding:26px;transition:all 0.3s;
-}
-.skill-card:hover{border-color:rgba(99,102,241,0.35);transform:translateY(-3px)}
-.skill-category{font-weight:600;font-size:14px;margin-bottom:14px;color:var(--text)}
-.skill-tags{display:flex;flex-wrap:wrap;gap:7px}
-.tag{
-  font-family:'IBM Plex Mono',monospace;font-size:10px;
-  padding:4px 10px;background:rgba(99,102,241,0.1);
-  border:1px solid rgba(99,102,241,0.2);border-radius:4px;color:var(--accent-light);
-}
-
-.edu-timeline{position:relative}
-.edu-timeline::before{
-  content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;
-  background:linear-gradient(to bottom,var(--accent),transparent);
-}
-.edu-item{position:relative;padding:0 0 44px 40px; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);}
-.edu-item:hover {transform: translateX(10px);}
-.edu-dot{position:absolute;left:-4px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 15px var(--accent); transition: all 0.4s ease;}
-.edu-item:hover .edu-dot { transform: scale(1.5); box-shadow:0 0 25px var(--accent2); background: var(--accent2); }
-.edu-period{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent2);margin-bottom:6px;line-height:1.6}
-.edu-degree{font-size:18px;font-weight:600;margin-bottom:4px}
-.edu-school{font-size:14px;color:var(--muted)}
-
-.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:8px}
-.course-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
-.course-card h4{font-size:14px;font-weight:600;margin-bottom:12px;color:var(--accent-light)}
-.course-list{list-style:none}
-.course-list li{color:var(--muted);font-size:13px;padding:4px 0;padding-left:14px;position:relative;line-height:1.5}
-.course-list li::before{content:'·';position:absolute;left:0;color:var(--accent);font-weight:bold}
-
-.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
-.cert-card{
-  background:var(--card);border:1px solid var(--border);border-radius:12px;
-  padding:24px;display:flex;flex-direction:column;gap:18px;
-  transition:all 0.3s;
-}
-.cert-card:hover{border-color:rgba(99,102,241,0.35);box-shadow:0 12px 40px rgba(99,102,241,0.1)}
-.cert-header{display:flex;gap:16px;align-items:flex-start}
-.cert-icon{
-  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
-  background:rgba(99,102,241,0.12);border-radius:10px;flex-shrink:0;font-size:20px;
-}
-.cert-body{flex:1}
-.cert-name{font-weight:600;font-size:15px;margin-bottom:4px}
-.cert-issuer{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-light);margin-bottom:6px}
-.cert-date{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent2);margin-bottom:6px}
-.cert-id{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px}
-.cert-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
-.cert-tasks{list-style:none;margin-top:4px}
-.cert-tasks li{
-  color:var(--muted);font-size:12.5px;padding:4px 0 4px 16px;
-  position:relative;line-height:1.5;
-}
-.cert-tasks li::before{content:'✓';position:absolute;left:0;color:var(--accent2);font-size:11px;top:5px}
-.cert-link{
-  display:inline-flex;align-items:center;gap:8px;margin-top:auto;
-  padding:9px 14px;width:fit-content;
-  font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;
-  color:var(--accent-light);text-decoration:none;
-  background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.22);
-  border-radius:6px;transition:all 0.2s;
-}
-.cert-link:hover{background:rgba(99,102,241,0.18);border-color:var(--accent-light);color:var(--text);transform:translateX(2px)}
-.cert-link svg{width:14px;height:14px;flex-shrink:0}
-
-.connect-section{background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%);max-width:100%;padding:96px 48px;border-top:1px solid var(--border)}
-.connect-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start}
-.connect-intro{
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:clamp(26px,3vw,38px);font-weight:400;font-style:italic;
-  line-height:1.35;margin-bottom:24px;color:var(--muted);
-}
-.connect-intro strong{color:var(--text);font-style:normal;font-weight:600}
-.connect-desc{color:var(--muted);font-size:15px;line-height:1.75;margin-bottom:32px}
-.contact-links{display:flex;flex-direction:column;gap:12px}
-.contact-link{
-  display:flex;align-items:center;gap:14px;padding:16px 20px;
-  background:var(--card);border:1px solid var(--border);border-radius:10px;
-  text-decoration:none;transition:all 0.2s;
-}
-.contact-link:hover{border-color:var(--accent-light);transform:translateX(3px)}
-.contact-link-icon{
-  width:38px;height:38px;display:flex;align-items:center;justify-content:center;
-  background:rgba(99,102,241,0.12);border-radius:8px;flex-shrink:0;font-size:16px;
-}
-.contact-link-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
-.contact-link-value{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text)}
-
-.contact-form{
-  background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px;
-}
-.form-title{font-size:18px;font-weight:600;margin-bottom:6px}
-.form-subtitle{font-size:13px;color:var(--muted);margin-bottom:28px}
-.form-group{margin-bottom:18px}
-.form-group label{
-  display:block;font-size:12px;font-weight:500;color:var(--muted);
-  margin-bottom:7px;letter-spacing:0.3px;
-}
-.form-group input,.form-group textarea{
-  width:100%;padding:12px 16px;
-  background:var(--surface-2);border:1px solid var(--border);border-radius:8px;
-  color:var(--text);font-family:'Inter',sans-serif;font-size:14px;
-  transition:border-color 0.2s,box-shadow 0.2s;outline:none;
-}
-.form-group input:focus,.form-group textarea:focus{
-  border-color:var(--accent-light);box-shadow:0 0 0 3px rgba(99,102,241,0.15);
-}
-.form-group textarea{resize:vertical;min-height:130px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-submit{
-  width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),#4f46e5);
-  color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;
-  cursor:pointer;transition:all 0.25s;margin-top:6px;
-  box-shadow:0 4px 20px var(--glow);
-}
-.form-submit:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 24px var(--glow)}
-.form-submit:disabled{opacity:0.6;cursor:not-allowed}
-.form-status{
-  margin-top:16px;padding:12px 16px;border-radius:8px;font-size:13px;
-  display:none;text-align:center;
-}
-.form-status.success{display:block;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.3);color:var(--success)}
-.form-status.error{display:block;background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.3);color:var(--error)}
-
-footer{
-  padding:36px 48px;border-top:1px solid var(--border);text-align:center;
-  font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);position:relative;z-index:1;
-}
-
-.reveal{opacity:0;transform:translateY(24px);transition:all 0.55s ease}
-.revealed{opacity:1;transform:translateY(0)}
-
-@media(max-width:960px){
-  nav{padding:16px 24px}
-  .nav-links{
-    display:none;position:absolute;top:100%;left:0;right:0;
-    flex-direction:column;gap:0;background:rgba(5,7,15,0.97);
-    border-bottom:1px solid var(--border);padding:16px 24px;
-  }
-  .nav-links.open{display:flex}
-  .nav-links li{width:100%}
-  .nav-links a{display:block;padding:12px 0}
-  .menu-toggle{display:block}
-  .hero{padding:100px 24px 60px}
-  .hero-inner{grid-template-columns:1fr;gap:40px}
-  .hero-right{order:-1}
-  .photo-frame{width:200px;height:200px}
-  section,.section-full,.connect-section{padding:64px 24px}
-  .connect-inner{grid-template-columns:1fr;gap:40px}
-  .form-row{grid-template-columns:1fr}
-  .stat-row{gap:20px}
-}
-</style>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 </head>
 <body>
+
+<div class="cine-grid" aria-hidden="true"></div>
+<div class="cine-vignette" aria-hidden="true"></div>
+<div class="cine-grain" aria-hidden="true"></div>
+<div class="cine-beam" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <nav>
   <div class="nav-logo">sahil.dev</div>
@@ -592,7 +211,7 @@ footer{
       <div class="project-stack">Next.js 16 · TypeScript · Zustand · Node.js · Vercel</div>
       <div class="project-desc">Full-stack AI assessment platform with three role-based portals (Admin, Teacher, Student). AI-generated question papers, PDF export via jsPDF, per-assignment analytics, and school-wide leaderboard — deployed on Vercel.</div>
       <div class="project-links">
-        <a href="https://quest-ai-beryl-ten.vercel.app/login" target="_blank" rel="noopener" class="project-link project-link-live" aria-label="View QuestAI live demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Live Demo</a>
+        <a href="https://quest-ai-beryl-ten.vercel.app/login" target="_blank" rel="noopener" class="project-link project-link-live" aria-label="View QuestAI live app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Live App</a>
         <a href="https://github.com/Sahhhiiillllll/QuestAI" target="_blank" rel="noopener" class="project-link" aria-label="View QuestAI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
       </div>
     </div>
@@ -609,7 +228,7 @@ footer{
       <div class="project-stack">Node.js · Razorpay · PostgreSQL · REST API</div>
       <div class="project-desc">Unified ticket booking platform for cricket, movies, concerts, and live events with end-to-end Razorpay payments, webhook confirmation, and real-time seat inventory under concurrent booking scenarios.</div>
       <div class="project-links">
-        <a href="https://ticket-verse-delta.vercel.app" target="_blank" rel="noopener" class="project-link project-link-live" aria-label="View TicketVerse live demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Live Demo</a>
+        <a href="https://ticket-verse-delta.vercel.app" target="_blank" rel="noopener" class="project-link project-link-live" aria-label="View TicketVerse live app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Live App</a>
         <a href="https://github.com/Sahhhiiillllll/Ticket_Verse" target="_blank" rel="noopener" class="project-link" aria-label="View TicketVerse on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
       </div>
     </div>
@@ -619,7 +238,7 @@ footer{
       <div class="project-stack">React · Three.js · Leaflet.js · Chart.js · Tailwind CSS</div>
       <div class="project-desc">Aerospace-grade ground control dashboard with real-time telemetry streaming, 3D attitude viewer, GPS trajectory map, safety-interlocked command controls, and CSV/PNG telemetry export.</div>
       <div class="project-links">
-        <a href="https://ground-control-software-aerospace-d.vercel.app" target="_blank" rel="noopener" class="project-link project-link-live" aria-label="View GCS Dashboard live demo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Live Demo</a>
+        <a href="https://ground-control-software-aerospace-d.vercel.app" target="_blank" rel="noopener" class="project-link project-link-live" aria-label="View GCS Dashboard live app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Live App</a>
         <a href="https://github.com/Sahhhiiillllll/Ground-Control-Software-Aerospace-Dashboard-live" target="_blank" rel="noopener" class="project-link" aria-label="View GCS Dashboard on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
       </div>
     </div>
@@ -678,6 +297,26 @@ footer{
       <div class="project-stack">Python · Flask · PyTorch · NLTK · Scikit-learn</div>
       <div class="project-desc">Flask-based medical chatbot using a PyTorch neural network with NLTK tokenization and bag-of-words features for intent classification and symptom query responses via REST API.</div>
       <a href="https://github.com/Sahhhiiillllll/Medical-Chatbot-Lyra-ML" target="_blank" rel="noopener" class="project-link" aria-label="View Medical Chatbot Lyra on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-num">13</div>
+      <div class="project-name">Jarvis — AI Intelligence System</div>
+      <div class="project-stack">Next.js · TypeScript · LLM · Vercel</div>
+      <div class="project-desc">An AI-powered intelligence system leveraging Large Language Models for natural language understanding, reasoning, and task automation. Features include conversational AI, knowledge retrieval, and personalized assistance capabilities deployed on Vercel.</div>
+      <div class="project-links">
+        <a href="https://jarvis-ai-intelligence-system-llm.vercel.app" target="_blank" rel="noopener" class="project-link project-link-live" aria-label="View Jarvis live app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Live App</a>
+        <a href="https://github.com/Sahhhiiillllll/JARVIS---AI-Intelligence-System-LLM" target="_blank" rel="noopener" class="project-link" aria-label="View Jarvis on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-num">14</div>
+      <div class="project-name">Payfin — Banking System Application</div>
+      <div class="project-stack">React · Node.js · MongoDB · Express · Vercel</div>
+      <div class="project-desc">A full-stack banking system application featuring secure user authentication, account management, transaction processing, and financial reporting. Built with modern web technologies and deployed on Vercel for accessibility.</div>
+      <div class="project-links">
+        <a href="https://payfin.vercel.app" target="_blank" rel="noopener" class="project-link project-link-live" aria-label="View Payfin live app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Live App</a>
+        <a href="https://github.com/Sahhhiiillllll/Payfin-Banking-System-Application" target="_blank" rel="noopener" class="project-link" aria-label="View Payfin on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>View on GitHub</a>
+      </div>
     </div>
   </div>
 </div>
@@ -919,6 +558,7 @@ footer{
    <a href="https://www.flaticon.com/free-icons/personal-information" title="personal information icons" style="color: var(--muted); text-decoration: none; font-size: 10px; margin-top: 5px; display: inline-block;"></a>
 </footer>
 
+<script src="app.js"></script>
 <script>
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
