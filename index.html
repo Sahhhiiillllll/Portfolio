@@ -682,6 +682,7 @@ revealElements.forEach(el => revealObserver.observe(el));
 <script>
 (function(){
   const preloader = document.getElementById('preloader');
+  if(!preloader) return;
   const canvas = document.getElementById('preloader-canvas');
   const ctx = canvas.getContext('2d');
   const bar = document.getElementById('pl-bar');
@@ -689,6 +690,10 @@ revealElements.forEach(el => revealObserver.observe(el));
   const statusEl = document.getElementById('pl-status');
   const percentEl = document.getElementById('pl-percent');
   const typedEl = document.getElementById('pl-typed');
+
+  // Lock scroll while preloader is active
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
 
   // Canvas resize
   function resize(){
@@ -836,11 +841,16 @@ revealElements.forEach(el => revealObserver.observe(el));
     if(progress<1){
       requestAnimationFrame(updateProgress);
     } else {
-      // Done — fade out
+      // Done — fade out and fully remove
       setTimeout(()=>{
         cancelAnimationFrame(animFrame);
         preloader.classList.add('fade-out');
-        setTimeout(()=>{ preloader.style.display='none'; }, 900);
+        setTimeout(()=>{
+          preloader.remove();
+          // Restore scroll
+          document.documentElement.style.overflow = '';
+          document.body.style.overflow = '';
+        }, 850);
       }, 200);
     }
   }
