@@ -15,7 +15,7 @@
   --success:#34d399;
   --error:#f87171;
 }
-body.light-mode {
+[data-theme='light'] body, body.light-mode {
   --bg: #f8fafc;
   --surface: #ffffff;
   --surface-2: #f1f5f9;
@@ -404,7 +404,7 @@ footer{
   animation:grid-drift 28s linear infinite;
   opacity:0.9;
 }
-body.light-mode .cine-grid{ opacity:0.35; }
+[data-theme='light'] body .cine-grid, body.light-mode .cine-grid{ opacity:0.35; }
 @keyframes grid-drift{
   0%{ background-position:0 0, 0 0; }
   100%{ background-position:48px 96px, 96px 48px; }
@@ -431,7 +431,7 @@ body.light-mode .cine-grid{ opacity:0.35; }
   position:fixed; inset:0; z-index:1; pointer-events:none;
   background:radial-gradient(ellipse 120% 90% at 50% 30%, transparent 55%, rgba(2,3,8,0.55) 100%);
 }
-body.light-mode .cine-vignette{
+[data-theme='light'] body .cine-vignette, body.light-mode .cine-vignette{
   background:radial-gradient(ellipse 120% 90% at 50% 30%, transparent 60%, rgba(15,23,42,0.07) 100%);
 }
 
@@ -594,50 +594,50 @@ body:not(.light-mode) .project-card:hover {
 }
 
 /* ── FULL LIGHT MODE OVERRIDES ── */
-body.light-mode .project-card {
+[data-theme='light'] body .project-card , body.light-mode .project-card {
   background: #ffffff;
   border: 1px solid rgba(15,23,42,0.1);
   box-shadow: 0 2px 16px rgba(15,23,42,0.08);
   color: #0f172a;
 }
-body.light-mode .project-card:hover {
+[data-theme='light'] body .project-card:hover , body.light-mode .project-card:hover {
   border-color: rgba(79,70,229,0.3);
   box-shadow: 0 6px 30px rgba(79,70,229,0.12);
   transform: translateY(-4px);
 }
-body.light-mode .project-num { color: rgba(15,23,42,0.25) !important; }
-body.light-mode .project-name { color: #0f172a !important; }
-body.light-mode .project-stack { color: #4f46e5 !important; }
-body.light-mode .project-desc { color: #334155 !important; }
-body.light-mode .project-link {
+[data-theme='light'] body .project-num , body.light-mode .project-num { color: rgba(15,23,42,0.25) !important; }
+[data-theme='light'] body .project-name , body.light-mode .project-name { color: #0f172a !important; }
+[data-theme='light'] body .project-stack , body.light-mode .project-stack { color: #4f46e5 !important; }
+[data-theme='light'] body .project-desc , body.light-mode .project-desc { color: #334155 !important; }
+[data-theme='light'] body .project-link , body.light-mode .project-link {
   background: rgba(79,70,229,0.07) !important;
   border-color: rgba(79,70,229,0.2) !important;
   color: #4f46e5 !important;
 }
-body.light-mode .project-link:hover {
+[data-theme='light'] body .project-link:hover , body.light-mode .project-link:hover {
   background: rgba(79,70,229,0.15) !important;
   color: #3730a3 !important;
 }
-body.light-mode .skill-card,
-body.light-mode .cert-card,
-body.light-mode .course-card {
+[data-theme='light'] body .skill-card, body.light-mode .skill-card,
+[data-theme='light'] body .cert-card, body.light-mode .cert-card,
+[data-theme='light'] body .course-card , body.light-mode .course-card {
   background: #ffffff !important;
   border-color: rgba(15,23,42,0.1) !important;
   color: #0f172a !important;
 }
-body.light-mode .skill-tag {
+[data-theme='light'] body .skill-tag , body.light-mode .skill-tag {
   background: rgba(79,70,229,0.08) !important;
   color: #4f46e5 !important;
   border-color: rgba(79,70,229,0.15) !important;
 }
-body.light-mode .section-full,
+[data-theme='light'] body .section-full, body.light-mode .section-full,
 body.light-mode section {
   background: transparent !important;
 }
-body.light-mode .connect-section {
+[data-theme='light'] body .connect-section , body.light-mode .connect-section {
   background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
 }
-body.light-mode .contact-card {
+[data-theme='light'] body .contact-card , body.light-mode .contact-card {
   background: #ffffff !important;
   border-color: rgba(15,23,42,0.1) !important;
 }
@@ -645,8 +645,8 @@ body.light-mode nav {
   background: rgba(248,250,252,0.92) !important;
   border-bottom-color: rgba(15,23,42,0.08) !important;
 }
-body.light-mode .hero-name,
-body.light-mode .hero-title { color: #0f172a !important; }
+[data-theme='light'] body .hero-name, body.light-mode .hero-name,
+[data-theme='light'] body .hero-title , body.light-mode .hero-title { color: #0f172a !important; }
 body.light-mode footer {
   background: #f1f5f9 !important;
   color: #64748b !important;
