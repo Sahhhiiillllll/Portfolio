@@ -12,32 +12,29 @@
 </head>
 <body>
 
-<!-- ═══════════════ CINEMATIC PRELOADER ═══════════════ -->
-<div id="preloader">
-  <canvas id="preloader-canvas"></canvas>
-  <div class="preloader-content">
-    <div class="preloader-logo">
-      <span class="pl-bracket">{</span>
-      <span class="pl-name" id="pl-typed"></span>
-      <span class="pl-cursor">|</span>
-      <span class="pl-bracket">}</span>
+<div id="pl" style="position:fixed;inset:0;z-index:99999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;overflow:hidden;transition:opacity 0.7s ease;">
+  <canvas id="pl-canvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+  <div style="position:absolute;top:24px;left:24px;width:30px;height:30px;border-top:2px solid #6366f1;border-left:2px solid #6366f1;opacity:0.6;"></div>
+  <div style="position:absolute;top:24px;right:24px;width:30px;height:30px;border-top:2px solid #6366f1;border-right:2px solid #6366f1;opacity:0.6;"></div>
+  <div style="position:absolute;bottom:24px;left:24px;width:30px;height:30px;border-bottom:2px solid #6366f1;border-left:2px solid #6366f1;opacity:0.6;"></div>
+  <div style="position:absolute;bottom:24px;right:24px;width:30px;height:30px;border-bottom:2px solid #6366f1;border-right:2px solid #6366f1;opacity:0.6;"></div>
+  <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:20px;">
+    <div style="font-size:clamp(36px,6vw,68px);font-weight:700;letter-spacing:6px;filter:drop-shadow(0 0 32px rgba(99,102,241,0.9));">
+      <span style="color:#6366f1;">{</span><span id="pl-name" style="background:linear-gradient(135deg,#818cf8,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"></span><span id="pl-cur" style="color:#22d3ee;-webkit-text-fill-color:#22d3ee;">|</span><span style="color:#6366f1;">}</span>
     </div>
-    <div class="preloader-subtitle">SDE &amp; Quant Researcher</div>
-    <div class="preloader-bar-wrap">
-      <div class="preloader-bar" id="pl-bar"></div>
-      <div class="preloader-bar-glow" id="pl-bar-glow"></div>
+    <div style="font-size:10px;letter-spacing:5px;color:#22d3ee;opacity:0.7;">SDE &amp; QUANT RESEARCHER</div>
+    <div style="width:min(320px,75vw);display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+      <div style="height:2px;background:rgba(255,255,255,0.07);border-radius:2px;position:relative;overflow:hidden;">
+        <div id="pl-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#6366f1,#22d3ee);border-radius:2px;"></div>
+        <div id="pl-glow" style="position:absolute;top:-3px;left:0;width:0%;height:8px;background:linear-gradient(90deg,transparent,#818cf8);filter:blur(3px);opacity:0.7;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div id="pl-status" style="font-size:9px;letter-spacing:2px;color:rgba(148,163,184,0.5);">INITIALIZING...</div>
+        <div id="pl-pct" style="font-size:11px;letter-spacing:1px;color:rgba(99,102,241,0.7);">0%</div>
+      </div>
     </div>
-    <div class="preloader-status" id="pl-status">INITIALIZING SYSTEMS...</div>
-    <div class="preloader-percent" id="pl-percent">0%</div>
   </div>
-  <div class="preloader-scanlines"></div>
-  <div class="preloader-vignette"></div>
-  <div class="preloader-corner tl"></div>
-  <div class="preloader-corner tr"></div>
-  <div class="preloader-corner bl"></div>
-  <div class="preloader-corner br"></div>
 </div>
-<!-- ═══════════════════════════════════════════════════ -->
 
 <div class="cine-grid" aria-hidden="true"></div>
 <div class="cine-vignette" aria-hidden="true"></div>
@@ -678,185 +675,161 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
 
 revealElements.forEach(el => revealObserver.observe(el));
 </script>
-<!-- ═══════════════ PRELOADER SCRIPT ═══════════════ -->
-<script>
-(function(){
-  const preloader = document.getElementById('preloader');
-  if(!preloader) return;
-  const canvas = document.getElementById('preloader-canvas');
-  const ctx = canvas.getContext('2d');
-  const bar = document.getElementById('pl-bar');
-  const barGlow = document.getElementById('pl-bar-glow');
-  const statusEl = document.getElementById('pl-status');
-  const percentEl = document.getElementById('pl-percent');
-  const typedEl = document.getElementById('pl-typed');
 
-  // Lock scroll while preloader is active
+<script>
+/* ── CINEMATIC PRELOADER ── */
+(function () {
+  var pl     = document.getElementById('pl');
+  var canvas = document.getElementById('pl-canvas');
+  var ctx    = canvas.getContext('2d');
+  var bar    = document.getElementById('pl-bar');
+  var glow   = document.getElementById('pl-glow');
+  var status = document.getElementById('pl-status');
+  var pct    = document.getElementById('pl-pct');
+  var named  = document.getElementById('pl-name');
+  var cursor = document.getElementById('pl-cur');
+
+  // Lock scroll
   document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
 
-  // Canvas resize
-  function resize(){
-    canvas.width = window.innerWidth;
+  // Resize canvas
+  function resize() {
+    canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
   }
   resize();
   window.addEventListener('resize', resize);
 
-  // Particle system
-  const particles = [];
-  const PARTICLE_COUNT = 90;
-  for(let i=0;i<PARTICLE_COUNT;i++){
-    particles.push({
-      x: Math.random()*window.innerWidth,
-      y: Math.random()*window.innerHeight,
-      r: Math.random()*1.5+0.3,
-      vx: (Math.random()-0.5)*0.4,
-      vy: (Math.random()-0.5)*0.4,
-      alpha: Math.random()*0.6+0.1,
-      color: Math.random()>0.5?'99,102,241':'34,211,238'
+  // Particles
+  var pts = [];
+  for (var i = 0; i < 80; i++) {
+    pts.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      r: Math.random() * 1.4 + 0.3,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      a: Math.random() * 0.5 + 0.1,
+      c: Math.random() > 0.5 ? '99,102,241' : '34,211,238'
     });
   }
 
-  // Grid lines
-  const GRID = 60;
-  let animFrame;
-  let startTime = Date.now();
+  var GRID = 60;
+  var t0 = Date.now();
+  var raf;
 
-  function drawParticles(){
-    const w = canvas.width, h = canvas.height;
-    ctx.clearRect(0,0,w,h);
+  function draw() {
+    var w = canvas.width, h = canvas.height;
+    var t = (Date.now() - t0) / 1000;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, w, h);
 
-    // Deep dark background
-    ctx.fillStyle='#000000';
-    ctx.fillRect(0,0,w,h);
+    // Grid
+    ctx.strokeStyle = 'rgba(99,102,241,0.055)';
+    ctx.lineWidth = 0.5;
+    var off = (t * 10) % GRID;
+    for (var x = off; x < w; x += GRID) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke(); }
+    for (var y = off; y < h; y += GRID) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); }
 
-    // Animated grid
-    const t = (Date.now()-startTime)/1000;
-    ctx.strokeStyle='rgba(99,102,241,0.06)';
-    ctx.lineWidth=0.5;
-    const offset = (t*12)%GRID;
-    for(let x=offset;x<w;x+=GRID){
-      ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke();
-    }
-    for(let y=offset;y<h;y+=GRID){
-      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
-    }
+    // Central glow
+    var cx = w / 2, cy = h / 2;
+    var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.min(w, h) * 0.5);
+    g.addColorStop(0, 'rgba(99,102,241,0.09)');
+    g.addColorStop(0.6, 'rgba(34,211,238,0.03)');
+    g.addColorStop(1, 'transparent');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
 
-    // Central glow orb
-    const cx=w/2, cy=h/2;
-    const grad = ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(w,h)*0.45);
-    grad.addColorStop(0,'rgba(99,102,241,0.08)');
-    grad.addColorStop(0.5,'rgba(34,211,238,0.03)');
-    grad.addColorStop(1,'transparent');
-    ctx.fillStyle=grad;
-    ctx.fillRect(0,0,w,h);
-
-    // Orbiting rings
-    for(let ring=0;ring<3;ring++){
-      const radius = 80+ring*60;
-      const speed = 0.3+ring*0.15;
-      const alpha = 0.06-ring*0.015;
+    // Rings
+    for (var ring = 0; ring < 3; ring++) {
+      var rad = 70 + ring * 55;
+      var spd = 0.25 + ring * 0.12;
       ctx.beginPath();
-      ctx.arc(cx, cy, radius, 0, Math.PI*2);
-      ctx.strokeStyle=`rgba(99,102,241,${alpha+Math.sin(t*speed)*0.02})`;
-      ctx.lineWidth=0.8;
+      ctx.arc(cx, cy, rad, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(99,102,241,' + (0.055 - ring * 0.012) + ')';
+      ctx.lineWidth = 0.8;
       ctx.stroke();
-      // Dot on ring
-      const angle = t*speed;
-      const dx = cx + Math.cos(angle)*radius;
-      const dy = cy + Math.sin(angle)*radius;
+      var ang = t * spd;
+      var dx = cx + Math.cos(ang) * rad;
+      var dy = cy + Math.sin(ang) * rad;
       ctx.beginPath();
-      ctx.arc(dx,dy,2,0,Math.PI*2);
-      ctx.fillStyle=`rgba(34,211,238,${0.5+Math.sin(t*2)*0.3})`;
+      ctx.arc(dx, dy, 2, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(34,211,238,' + (0.5 + Math.sin(t * 2) * 0.25) + ')';
       ctx.fill();
     }
 
     // Particles
-    particles.forEach(p=>{
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0)p.x=w; if(p.x>w)p.x=0;
-      if(p.y<0)p.y=h; if(p.y>h)p.y=0;
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
       ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      const a = p.alpha*(0.7+Math.sin(t*1.5+p.x)*0.3);
-      ctx.fillStyle=`rgba(${p.color},${a})`;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + p.c + ',' + (p.a * (0.7 + Math.sin(t + p.x * 0.01) * 0.3)) + ')';
       ctx.fill();
-    });
-
-    // Horizontal scan beam
-    const scanY = ((t*0.15)%1)*h;
-    const scanGrad = ctx.createLinearGradient(0,scanY-30,0,scanY+30);
-    scanGrad.addColorStop(0,'transparent');
-    scanGrad.addColorStop(0.5,'rgba(99,102,241,0.05)');
-    scanGrad.addColorStop(1,'transparent');
-    ctx.fillStyle=scanGrad;
-    ctx.fillRect(0,scanY-30,w,60);
-
-    animFrame = requestAnimationFrame(drawParticles);
-  }
-  drawParticles();
-
-  // Typed animation
-  const name = 'SAHIL';
-  let charIdx = 0;
-  const typingInterval = setInterval(()=>{
-    if(charIdx<=name.length){
-      typedEl.textContent = name.slice(0,charIdx);
-      charIdx++;
-    } else {
-      clearInterval(typingInterval);
     }
-  }, 120);
 
-  // Status messages
-  const statuses = [
-    'INITIALIZING SYSTEMS...',
-    'LOADING MODULES...',
-    'COMPILING ASSETS...',
-    'RENDERING INTERFACE...',
-    'LAUNCHING PORTFOLIO...'
-  ];
+    // Scan beam
+    var sy = ((t * 0.13) % 1) * h;
+    var sg = ctx.createLinearGradient(0, sy - 25, 0, sy + 25);
+    sg.addColorStop(0, 'transparent');
+    sg.addColorStop(0.5, 'rgba(99,102,241,0.045)');
+    sg.addColorStop(1, 'transparent');
+    ctx.fillStyle = sg;
+    ctx.fillRect(0, sy - 25, w, 50);
 
-  // Progress animation over ~3.5 seconds
-  let progress = 0;
-  const totalDuration = 3500;
-  const startProg = Date.now();
+    raf = requestAnimationFrame(draw);
+  }
+  draw();
 
-  function updateProgress(){
-    const elapsed = Date.now()-startProg;
-    const raw = elapsed/totalDuration;
-    // Ease in-out
-    progress = raw<0.5 ? 2*raw*raw : 1-Math.pow(-2*raw+2,2)/2;
-    progress = Math.min(progress,1);
+  // Cursor blink
+  var curOn = true;
+  setInterval(function () { cursor.style.opacity = (curOn = !curOn) ? '1' : '0'; }, 530);
 
-    const pct = Math.round(progress*100);
-    bar.style.width = pct+'%';
-    barGlow.style.width = pct+'%';
-    percentEl.textContent = pct+'%';
+  // Typing
+  var NAME = 'SAHIL';
+  var ci = 0;
+  var typeInt = setInterval(function () {
+    named.textContent = NAME.slice(0, ci);
+    ci++;
+    if (ci > NAME.length) clearInterval(typeInt);
+  }, 110);
 
-    const statusIdx = Math.floor(progress*(statuses.length-0.01));
-    statusEl.textContent = statuses[Math.min(statusIdx, statuses.length-1)];
+  // Progress — simple setInterval, no rAF dependency
+  var STATUSES = ['INITIALIZING...', 'LOADING MODULES...', 'COMPILING ASSETS...', 'RENDERING UI...', 'LAUNCHING...'];
+  var TOTAL = 3400; // ms
+  var STEPS = 100;
+  var step = 0;
+  var stepTime = TOTAL / STEPS;
 
-    if(progress<1){
-      requestAnimationFrame(updateProgress);
-    } else {
-      // Done — fade out and fully remove
-      setTimeout(()=>{
-        cancelAnimationFrame(animFrame);
-        preloader.classList.add('fade-out');
-        setTimeout(()=>{
-          preloader.remove();
-          // Restore scroll
+  var progInt = setInterval(function () {
+    step++;
+    if (step >= STEPS) {
+      step = STEPS;
+      clearInterval(progInt);
+      // Done — dismiss
+      setTimeout(function () {
+        cancelAnimationFrame(raf);
+        pl.style.opacity = '0';
+        setTimeout(function () {
+          pl.style.display = 'none';
           document.documentElement.style.overflow = '';
           document.body.style.overflow = '';
-        }, 850);
-      }, 200);
+        }, 750);
+      }, 150);
     }
-  }
-  updateProgress();
+    var p = step / STEPS;
+    var pv = Math.round(p * 100);
+    bar.style.width  = pv + '%';
+    glow.style.width = pv + '%';
+    pct.textContent  = pv + '%';
+    status.textContent = STATUSES[Math.min(Math.floor(p * STATUSES.length), STATUSES.length - 1)];
+  }, stepTime);
+
 })();
 </script>
-<!-- ═══════════════════════════════════════════════════ -->
 </body>
 </html>
